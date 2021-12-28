@@ -1,0 +1,121 @@
+body{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar-brand{
+    font-size: 1.4rem !important;
+}
+
+.entry-modal{
+    border: 1px solid #444444;
+    width: 300px;
+    margin: auto;
+    z-index: 9999;
+    position: absolute;
+    left: 50%;
+    top: 70;
+    margin-left: -150px;
+    padding: 5px;
+    color: #fff;
+    background-color: #444444;
+    text-align: center;
+}
+
+/* #notification{
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    color: #fff;
+    margin: 0;
+    top: 47.33px;
+    font-size: 18pt;
+    width: 100%;
+    background-color: orange;
+} */
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background: #fff;
+  }
+  
+  #preloader:before {
+    content: "";
+    position: fixed;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    border: 6px solid #0563bb;
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: animate-preloader 1s linear infinite;
+    animation: animate-preloader 1s linear infinite;
+  }
+  
+  @-webkit-keyframes animate-preloader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes animate-preloader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+.room-input{
+  border: none;
+  padding:5px;
+}
+
+button{
+    margin: 3px;
+    padding: 5px;
+}
+
+#remote-video{
+    top: 10%;
+    height: 90%;
+    width: 100%;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+}
+
+#local-video{
+    top: 60;
+    width: 300;
+    object-fit: cover;
+    height: 150;
+    z-index: 1;
+    right: 15;
+    background-color: #ffffff;
+    position: absolute;
+}
+.meet-controls-bar{
+    bottom: 0;
+    background-color: black;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.navbar {
+  background-color: #0563bb;
+  color: white;
+}
