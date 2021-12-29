@@ -158,7 +158,7 @@ function joinRoom() {
     }
     room_id = PRE + room + SUF;
     //hideModal()
-    peer = new Peer(sessionStorage.getItem("userId"))
+    peer = new Peer()
     peer.on('open', (id) => {
         console.log("Peer Connected with Id: " + id)
         getUserMedia({ video: true, audio: true }, (stream) => {
@@ -187,8 +187,8 @@ function joinRoom() {
             addMessage("<span class=\"peerMsg\">Peer:</span> " + data);
         });
     })
-     // Listen for enter in message box
-     sendMessageBox.addEventListener('keypress', function (e) {
+    // Listen for enter in message box
+    sendMessageBox.addEventListener('keypress', function (e) {
         var event = e || window.event;
         var char = event.which || event.keyCode;
         if (char == '13')
