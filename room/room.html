@@ -17,6 +17,7 @@
             Party Shop
           </a>
           <button class="btn btn-outline-light my-2 my-sm-0" style="margin-right: 20px" onclick="startScreenShare()">Screen Share</button>
+          <!-- <button class="btn btn-outline-light my-2 my-sm-0" style="margin-right: 20px" onclick="startScreenShare()">Chat</button> -->
           <!-- <button onclick="startScreenShare()">Screen Share</button> -->
     </nav>
     <!-- <h1 class="title">Delta Meet</h1> -->
@@ -30,7 +31,10 @@
         </div>
     </div> -->
     <div class="meet-area">
-        <table class="display">
+        <div class="chat-area" id="chat-area">
+            <iframe id="chat-area-iframe" class="chat-area-iframe" src="./../chat/chat.html"></iframe>
+        </div>
+        <!-- <table class="display">
             <tr>
                 <td class="title">Messages:</td>
             </tr>
@@ -44,7 +48,7 @@
             <tr>
                 <td><div class="message" id="message"></div></td>
             </tr>
-        </table>
+        </table> -->
         <!-- Remote Video Element-->
         <video id="remote-video"></video>
 
