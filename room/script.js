@@ -6,7 +6,8 @@ var local_stream;
 var screenStream;
 var peer = null;
 var currentPeer = null
-var screenSharing = false
+var screenSharing = false;
+var message = document.getElementById("chat-content");
 
 window.onload = function () {
     if (sessionStorage.getItem("action") === "create") {
@@ -21,10 +22,8 @@ function createRoom() {
     console.log("Creating Room")
     var peer = null; // Own peer object
     var conn = null;
-    var message = document.getElementById("message");
     var sendMessageBox = document.getElementById("sendMessageBox");
     var sendButton = document.getElementById("sendButton");
-    var clearMsgsButton = document.getElementById("clearMsgsButton");
     //let room = document.getElementById("room-input").value;
     let room = sessionStorage.getItem("roomId");
     if (room == " " || room == "") {
@@ -64,7 +63,7 @@ function createRoom() {
         console.log("Connected to: " + conn.peer);
         conn.on('data', function (data) {
             console.log("Data recieved");
-            addMessage("<span class=\"peerMsg\">Peer: </span>" + data);
+            addMessage("<div class=\"media media-chat\"><div class=\"media-body\"><p>" + data + "</p></div></div>");
         });
     });
     // Listen for enter in message box
@@ -76,18 +75,17 @@ function createRoom() {
     });
     // Send message
     sendButton.addEventListener('click', function () {
+        console.log('send event listener')
         if (conn && conn.open) {
             var msg = sendMessageBox.value;
             sendMessageBox.value = "";
             conn.send(msg);
             console.log("Sent: " + msg)
-            addMessage("<span class=\"selfMsg\">Self: </span>" + msg);
+            addMessage("<div class=\"media media-chat media-chat-reverse\"><div class=\"media-body\"><p>" + msg + "</p></div></div>");
         } else {
             console.log('Connection is closed');
         }
     });
-    // Clear messages box
-    clearMsgsButton.addEventListener('click', clearMessages);
 }
 
 
@@ -108,12 +106,7 @@ function addMessage(msg) {
         return t;
     };
 
-    message.innerHTML = "<br><span class=\"msg-time\">" + h + ":" + m + ":" + s + "</span>  -  " + msg + message.innerHTML;
-}
-
-function clearMessages() {
-    message.innerHTML = "";
-    addMessage("Msgs cleared");
+    message.innerHTML = message.innerHTML + msg;
 }
 
 function setLocalStream(stream) {
@@ -145,10 +138,8 @@ function notify(msg) {
 function joinRoom() {
     var peer = null; // own peer object
     var conn = null;
-    var message = document.getElementById("message");
     var sendMessageBox = document.getElementById("sendMessageBox");
     var sendButton = document.getElementById("sendButton");
-    var clearMsgsButton = document.getElementById("clearMsgsButton");
     console.log("Joining Room")
     //let room = document.getElementById("room-input").value;
     let room = sessionStorage.getItem("roomId");
@@ -184,7 +175,7 @@ function joinRoom() {
         });
         // Handle incoming data (messages only since this is the signal sender)
         conn.on('data', function (data) {
-            addMessage("<span class=\"peerMsg\">Peer:</span> " + data);
+            addMessage("<div class=\"media media-chat\"><div class=\"media-body\"><p>" + data + "</p></div></div>");
         });
     })
     // Listen for enter in message box
@@ -201,14 +192,11 @@ function joinRoom() {
             sendMessageBox.value = "";
             conn.send(msg);
             console.log("Sent: " + msg);
-            addMessage("<span class=\"selfMsg\">Self: </span> " + msg);
+            addMessage("<div class=\"media media-chat media-chat-reverse\"><div class=\"media-body\"><p>" + msg + "</p></div></div>");
         } else {
             console.log('Connection is closed');
         }
     });
-
-    // Clear messages box
-    clearMsgsButton.addEventListener('click', clearMessages);
 }
 
 function startScreenShare() {
