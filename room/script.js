@@ -81,7 +81,7 @@ function createRoom() {
             sendMessageBox.value = "";
             conn.send(msg);
             console.log("Sent: " + msg)
-            addMessage("<div class=\"media media-chat media-chat-reverse\"><div class=\"media-body\"><p>" + msg + "</p></div></div>");
+            addMessage("<div class=\"media media-chat media-chat-reverse\"><div class=\"media-body\" style=\"float:right\"><p>" + msg + "</p></div></div><br/>");
         } else {
             console.log('Connection is closed');
         }
@@ -192,7 +192,7 @@ function joinRoom() {
             sendMessageBox.value = "";
             conn.send(msg);
             console.log("Sent: " + msg);
-            addMessage("<div class=\"media media-chat media-chat-reverse\"><div class=\"media-body\"><p>" + msg + "</p></div></div>");
+            addMessage("<div class=\"media media-chat media-chat-reverse\"><div class=\"media-body\" style=\"float:right\"><p>" + msg + "</p></div></div><br/>");
         } else {
             console.log('Connection is closed');
         }

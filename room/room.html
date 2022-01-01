@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Delta Meet</title>
+    <title>Room</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" type="text/css" href="./chat-style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="../lib/css/emoji.css" rel="stylesheet">
 </head>
 
@@ -20,19 +21,8 @@
         </a>
         <button class="btn btn-outline-light my-2 my-sm-0" style="margin-right: 20px"
             onclick="startScreenShare()">Screen Share</button>
-        <!-- <button class="btn btn-outline-light my-2 my-sm-0" style="margin-right: 20px" onclick="startScreenShare()">Chat</button> -->
-        <!-- <button onclick="startScreenShare()">Screen Share</button> -->
     </nav>
-    <!-- <h1 class="title">Delta Meet</h1> -->
     <div id="preloader" hidden></div>
-    <!-- <div class="entry-modal" id="entry-modal">
-        <p>Create or Join Meeting</p>
-        <input id="room-input" class="room-input" placeholder="Enter Room ID">
-        <div>
-            <button onclick="createRoom()">Create Room</button>
-            <button onclick="joinRoom()">Join Room</button>
-        </div>
-    </div> -->
     <div class="meet-area">
         <div class="chat-area" id="chat-area">
             <!-- <iframe id="chat-area-iframe" class="chat-area-iframe" src="./../chat/chat.html"></iframe> -->
@@ -42,7 +32,7 @@
                         <h4 class="card-title"><strong>Chat</strong></h4>
                     </div>
                     <div class="ps-container ps-theme-default ps-active-y" id="chat-content"
-                        style="overflow-y: scroll !important; height:450px !important;">
+                        style="overflow-y: scroll !important;">
                         <!-- <div class="media media-meta-day">Today</div> -->
                         <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
                             <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
@@ -51,33 +41,15 @@
                             <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 2px;"></div>
                         </div>
                     </div>
-                    <div class="publisher bt-1 border-light"> <input class="publisher-input" type="text"
-                            placeholder="Write something">
-                        <a class="publisher-btn text-info" href="#" data-abc="true"><i
-                                class="fa fa-paper-plane"></i></a>
+                    <div class="publisher bt-1 border-light"> <input class="publisher-input" id="sendMessageBox"
+                            type="text" placeholder="Write something">
+                        <a class="publisher-btn text-info" href="#" id="sendButton" data-abc="true"><i
+                                class="fa fa-paper-plane"></i>
+                        </a>
                     </div>
-                    <!-- <input class="publisher-input" type="text" placeholder="Write something" data-emojiable="true"> -->
-
-                    <!-- <input type="text" id="sendMessageBox" placeholder="Enter a message..." autofocus="true" />
-                    <button type="button" id="sendButton">Send</button> -->
                 </div>
             </div>
         </div>
-        <!-- <table class="display">
-            <tr>
-                <td class="title">Messages:</td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="text" id="sendMessageBox" placeholder="Enter a message..." autofocus="true" />
-                    <button type="button" id="sendButton">Send</button>
-                    <button type="button" id="clearMsgsButton">Clear Msgs (Local)</button>
-                </td>
-            </tr>
-            <tr>
-                <td><div class="message" id="message"></div></td>
-            </tr>
-        </table> -->
         <!-- Remote Video Element-->
         <video id="remote-video"></video>
 
@@ -94,25 +66,25 @@
 
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-    <!-- Begin emoji-picker JavaScript -->
-    <script src="../lib/js/config.js"></script>
-    <script src="../lib/js/util.js"></script>
-    <script src="../lib/js/jquery.emojiarea.js"></script>
-    <script src="../lib/js/emoji-picker.js"></script>
-    <script src="../room/script.js"></script>
-    <script>
-        $(function () {
-            // Initializes and creates emoji set from sprite sheet
-            window.emojiPicker = new EmojiPicker({
-                emojiable_selector: '[data-emojiable=true]',
-                assetsPath: '../lib/img/',
-                popupButtonClasses: 'fa fa-smile-o'
-            });
-            // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
-            // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
-            // It can be called as many times as necessary; previously converted input fields will not be converted again
-            window.emojiPicker.discover();
+<!-- Begin emoji-picker JavaScript -->
+<script src="../lib/js/config.js"></script>
+<script src="../lib/js/util.js"></script>
+<script src="../lib/js/jquery.emojiarea.js"></script>
+<script src="../lib/js/emoji-picker.js"></script>
+<script src="../room/script.js"></script>
+<script>
+    $(function () {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+            emojiable_selector: '[data-emojiable=true]',
+            assetsPath: '../lib/img/',
+            popupButtonClasses: 'fa fa-smile-o'
         });
-    </script>
+        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+        // It can be called as many times as necessary; previously converted input fields will not be converted again
+        window.emojiPicker.discover();
+    });
+</script>
 
 </html>
