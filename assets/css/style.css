@@ -736,3 +736,7 @@ a {
 ::placeholder {
   color: #b3b3b3
 }
+
+.signup-error {
+  color: white;
+}

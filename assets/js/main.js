@@ -253,14 +253,14 @@
    * Animation on scroll
    */
   window.addEventListener('load', () => {
-    
+    //Vamsi: styling
     if (sessionStorage.getItem("name")) {
-      document.getElementById("greetings").innerText = "Hi " + sessionStorage.getItem("name");
+      document.getElementById("greetings").innerHTML = "Hi " + sessionStorage.getItem("name");
       document.getElementById("logout-button").style.display = "block";
       document.getElementById("login-button").style.display = "none";
       document.getElementById("rooms").setAttribute('data-target', "#myModal")
     } else {
-      document.getElementById("greetings").innerText = "";
+      document.getElementById("greetings").innerHTML = "";
       document.getElementById("logout-button").style.display = "none";
       document.getElementById("login-button").style.display = "block";
       document.getElementById("rooms").setAttribute('data-target', "#exampleModalCenter")
@@ -275,9 +275,10 @@
 
 })()
 
+//Vamsi: styling
 function logout() {
   sessionStorage.clear();
-  document.getElementById("greetings").innerText = "";
+  document.getElementById("greetings").innerHTML = "";
   document.getElementById("logout-button").style.display = "none";
   document.getElementById("login-button").style.display = "block";
   document.getElementById("rooms").setAttribute('data-target', "#exampleModalCenter")

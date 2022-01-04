@@ -410,7 +410,7 @@
       const myJson = await response.json(); //extract JSON from the http response
       if (myJson.message) {
         document.getElementById("login-error").innerHTML = myJson.message;
-        document.getElementById("greetings").innerText = "";
+        document.getElementById("greetings").innerHTML = "";
       } else {
         sessionStorage.setItem("name", myJson.name);
         document.getElementById("login-error").innerHTML = "";
@@ -429,7 +429,7 @@
       });
       const myJson = await response.json();
       if (myJson.message) {
-        document.getElementById("signup-error").innerHTML = myJson.message;
+        document.getElementById("signup-error").innerHTML = "<p>"+myJson.message+"</p>";
       } else {
         document.getElementById("signup-error").innerHTML = "Signup Successful. Login to continue";
       }
