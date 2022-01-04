@@ -81,7 +81,10 @@
     </div>
   </div>
   <div style="float: right;">
-    <p id="greetings"></p>
+    <div class="greetings-div">
+      <p id="greetings"></p>
+    </div>
+
     <!-- Button trigger modal -->
     <button type="button" style="float: right;margin-right: 20px;margin-top: 10px;" class="btn btn-primary"
       data-toggle="modal" data-target="#exampleModalCenter" id="login-button">
@@ -429,7 +432,7 @@
       });
       const myJson = await response.json();
       if (myJson.message) {
-        document.getElementById("signup-error").innerHTML = "<p>"+myJson.message+"</p>";
+        document.getElementById("signup-error").innerHTML = "<p>" + myJson.message + "</p>";
       } else {
         document.getElementById("signup-error").innerHTML = "Signup Successful. Login to continue";
       }
