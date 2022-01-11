@@ -9,18 +9,18 @@ var currentPeer = null
 var screenSharing = false;
 var message = document.getElementById("chat-content");
 
-window.onload = function () {
-    if (sessionStorage.getItem("action") === "create") {
+window.onload = function() {
+    if(sessionStorage.getItem("action") === "create") {
         createRoom();
     }
-    if (sessionStorage.getItem("action") === "join") {
+    if(sessionStorage.getItem("action") === "join") {
         joinRoom();
     }
 }
 
 function createRoom() {
     console.log("Creating Room")
-    var peer = null; // Own peer object
+    //var peer = null; // Own peer object
     var conn = null;
     var sendMessageBox = document.getElementById("sendMessageBox");
     var sendButton = document.getElementById("sendButton");
@@ -117,6 +117,7 @@ function setLocalStream(stream) {
     video.play();
 }
 function setRemoteStream(stream) {
+
     let video = document.getElementById("remote-video");
     video.srcObject = stream;
     video.play();
@@ -136,7 +137,8 @@ function notify(msg) {
 }
 
 function joinRoom() {
-    var peer = null; // own peer object
+
+   // var peer = null; // own peer object
     var conn = null;
     var sendMessageBox = document.getElementById("sendMessageBox");
     var sendButton = document.getElementById("sendButton");

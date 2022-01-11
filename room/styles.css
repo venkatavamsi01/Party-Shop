@@ -1,10 +1,11 @@
 body{
+   
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .navbar-brand{
-    font-size: 1.4rem !important;
+    font-size: 1.8rem;
 }
 
 .entry-modal{
@@ -17,7 +18,7 @@ body{
     top: 70;
     margin-left: -150px;
     padding: 5px;
-    color: #fff;
+    color: #0B0C10;
     background-color: #444444;
     text-align: center;
 }
@@ -42,7 +43,7 @@ body{
     bottom: 0;
     z-index: 9999;
     overflow: hidden;
-    background: #fff;
+    background: #0B0C10;
   }
   
   #preloader:before {
@@ -50,9 +51,9 @@ body{
     position: fixed;
     top: calc(50% - 30px);
     left: calc(50% - 30px);
-    border: 6px solid #0563bb;
-    border-top-color: #fff;
-    border-bottom-color: #fff;
+    border: 6px solid #66FCF1;
+    border-top-color: #0B0C10;
+    border-bottom-color: #0B0C10;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -84,9 +85,17 @@ body{
 }
 
 button{
+    color: #ffff;
     margin: 3px;
     padding: 5px;
 }
+
+.btn-outline-dark:hover {
+  color: #fff;
+  background-color: #212529;
+  border-color: #212529;
+}
+
 
 #remote-video{
     top: 10%;
@@ -104,7 +113,7 @@ button{
     height: 150;
     z-index: 1;
     right: 30%;
-    background-color: #ffffff;
+    background-color: #0c0B10;
     position: absolute;
 }
 .meet-controls-bar{
@@ -116,7 +125,6 @@ button{
 }
 
 .navbar {
-  background-color: #0563bb;
   color: white;
 }
 
