@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js"></script>
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="styles.css" rel="stylesheet">
@@ -47,10 +48,10 @@
         <li><a href="#clients" class="nav-link scrollto"><i class="bx bx-share"></i> <span>GOTO</span></a></li>
         <li><a href="#about" class="nav-link scrollto"><i class="bx bx-receipt"></i>
             <span>About</span></a></li>
-        
+
         <li><a data-toggle="modal" data-target="#myModal" class="nav-link scrollto" id="rooms"><i
               class="bx bx-plus"></i><span>Rooms</span></a></li>
-       <!-- <li><a data-toggle="modal" data-target="#myModal" class="nav-link scrollto"><i
+        <!-- <li><a data-toggle="modal" data-target="#myModal" class="nav-link scrollto"><i
               class="bx bx-plus"></i><span>Join</span></a></li> -->
       </ul>
 
@@ -65,32 +66,32 @@
       <!-- Modal content-->
       <div class="modal-content" style="background-color: #0B0C10;">
         <p id="notification" hidden></p>
-        <div class="entry-modal" id="entry-modal" >
+        <div class="entry-modal" id="entry-modal">
           <h2 class="modal-header">Create or Join Meeting</h2>
           <input id="room-input" class="room-input" placeholder="Enter Room ID">
-          <br/>
-          <br/>
+          <br />
+          <br />
           <div>
             <button onclick="room('create')" class="modal-button" style="color: #0B0C10">Create</button>
-            <button onclick="room('join')" class="modal-button"  style="color: #0B0C10">Join</button>
+            <button onclick="room('join')" class="modal-button" style="color: #0B0C10">Join</button>
           </div>
-          <br/>
+          <br />
         </div>
       </div>
     </div>
   </div>
-  <div style="float: right;">
+  <!-- <div style="float: right;">
     <div class="greetings-div">
       <p id="greetings"></p>
-  </div>
-  <button type="button" style="float: right;margin-right: 20px;margin-top: 10px;margin-bottom: 2px;" class="btn btn-primary"
-      data-toggle="modal" data-target="#exampleModalCenter" id="login-button">
-      LOGIN
-    </button>
-    <button type="button" style="float: right;margin-right: 20px;margin-top: 10px;" class="btn btn-primary"
-      onclick="logout()" id="logout-button">
-      LOGOUT
-    </button>
+  </div> -->
+  <button type="button" style="float: right;margin-right: 20px;margin-top: 10px;margin-bottom: 2px;"
+    class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="login-button">
+    LOGIN
+  </button>
+  <button type="button" style="float: right;margin-right: 20px;margin-top: 10px;" class="btn btn-primary"
+    onclick="logout()" id="logout-button">
+    LOGOUT
+  </button>
   </div>
 
   <!-- Modal -->
@@ -98,56 +99,58 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-          <div class="login-box">
-            <div class="login-snip"> <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label
-                for="tab-1" class="tab">Login</label> <input id="tab-2" type="radio" name="tab" class="sign-up"><label
-                for="tab-2" class="tab">Sign Up</label>
-              <div class="login-space">
-                <div class="login">
-                  <div class="group"> <label for="user" class="label">Email</label> <input id="emailL" type="text"
-                      class="input" placeholder="Enter your email"> </div>
-                  <div class="group"> <label for="passL" class="label">Password</label> <input id="passL"
-                      type="password" class="input" data-type="password" placeholder="Enter your password"> </div>
-                  <!-- <div class="group"> <input id="check" type="checkbox" class="check" checked> <label for="check"><span class="icon"></span> Keep me Signed in</label> </div> -->
-                  <div class="group"> <button type="submit" onclick="userLogin()" class="button" id="login">Log
-                      In</button>
-                  </div>
-                  <div class="hr"></div>
-                  <div id="login-error" class="login-error"></div>
-                  <!-- <div class="foot"> <a href="#">Forgot Password?</a> </div> -->
+        <div class="login-box">
+          <div class="login-snip"> <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1"
+              class="tab">Login</label> <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2"
+              class="tab">Sign Up</label>
+            <div class="login-space">
+              <div class="login">
+                <div class="group"> <label for="user" class="label">Email</label> <input id="emailL" type="text"
+                    class="input" placeholder="Enter your email"> </div>
+                <div class="group"> <label for="passL" class="label">Password</label> <input id="passL" type="password"
+                    class="input" data-type="password" placeholder="Enter your password"> </div>
+                <!-- <div class="group"> <input id="check" type="checkbox" class="check" checked> <label for="check"><span class="icon"></span> Keep me Signed in</label> </div> -->
+                <div class="group"> <button type="submit" onclick="userLogin()" class="button" id="login">Log
+                    In</button>
                 </div>
-                <div class="sign-up-form">
-                  <div class="group"> <label for="pass" class="label">Email Address</label> <input id="email"
-                      type="text" class="input" placeholder="Enter your email address">
-                  </div>
-                  <div class="group"> <label for="user" class="label">Username</label> <input id="user" type="text"
-                      class="input" placeholder="Create your Username">
-                  </div>
-                  <div class="group"> <label for="pass" class="label">Password</label> <input id="pass" type="password"
-                      class="input" data-type="password" placeholder="Create your password"> </div>
-                  <div class="group"> <label for="pass" class="label">Repeat Password</label> <input id="pass"
-                      type="password" class="input" data-type="password" placeholder="Repeat your password"> </div>
-                  <div class="group"> <button type="submit" onclick="userSignUp()" class="button" id="signup">Sign
-                      Up</button> </div>
-                  <div class="hr"></div>
-                  <div id="signup-error" class="signup-error"></div>
-                  <div class="foot"> <label for="tab-1">Already Member?</label> </div>
+                <div class="hr"></div>
+                <div id="login-error" class="login-error"></div>
+                <!-- <div class="foot"> <a href="#">Forgot Password?</a> </div> -->
+              </div>
+              <div class="sign-up-form">
+                <div class="group"> <label for="pass" class="label">Email Address</label> <input id="email" type="text"
+                    class="input" placeholder="Enter your email address">
                 </div>
+                <div class="group"> <label for="user" class="label">Username</label> <input id="user" type="text"
+                    class="input" placeholder="Create your Username">
+                </div>
+                <div class="group"> <label for="pass" class="label">Password</label> <input id="pass" type="password"
+                    class="input" data-type="password" placeholder="Create your password"> </div>
+                <div class="group"> <label for="pass" class="label">Repeat Password</label> <input id="pass"
+                    type="password" class="input" data-type="password" placeholder="Repeat your password"> </div>
+                <div class="group"> <button type="submit" onclick="userSignUp()" class="button" id="signup">Sign
+                    Up</button> </div>
+                <div class="hr"></div>
+                <div id="signup-error" class="signup-error"></div>
+                <div class="foot"> <label for="tab-1">Already Member?</label> </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
+      <span id="greetings" class="greetings" style="color: #ffffff;"></span>
+      <br />
       <h1 style="color: #ffffff;">Party Shop</h1>
       <p style="color: #ffffff;"><span class="typed" data-typed-items="Experiment,Experience"></span>With Friends</p>
       <div class="social-links">
-        <a href="#" class="twitter"  style="color: #ffffff;"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"  style="color: #ffffff;"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="twitter" style="color: #ffffff;"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook" style="color: #ffffff;"><i class="bx bxl-facebook"></i></a>
         <a href="#" class="instagram" style="color: #ffffff;"><i class="bx bxl-instagram"></i></a>
         <a href="#" class="google-plus" style="color: #ffffff;"><i class="bx bxl-skype"></i></a>
         <a href="#" class="linkedin" style="color: #ffffff;"><i class="bx bxl-linkedin"></i></a>
@@ -193,10 +196,10 @@
 
   <section id="about">
 
-  <section id="main" style="background: #0B0C10;">
-    <div class="section-title" >
-      <h2 style="color: #C5C6C7;">About</h2>
-    </div>
+    <section id="main" style="background: #0B0C10;">
+      <div class="section-title">
+        <h2 style="color: #C5C6C7;">About</h2>
+      </div>
 
       <div class="container" style="background: #0B0C10;">
         <div class="section-content">
@@ -221,7 +224,8 @@
                   <div class="col-md-4 offset-md-2 col-sm-6">
                     <br><br>
                     <h4 class="mb-4" style="color: #C5C6C7;">Capture every moments and share it to all your friends</h4>
-                    <p style="color: #C5C6C7;">Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet
+                    <p style="color: #C5C6C7;">Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus
+                      varius blandit sit amet
                       non magna. Cras mattis consectetur purus sit amet.</p>
                   </div>
                   <!--/ .col-md-4.col-md-offset-2.col-sm-6 -->
@@ -248,8 +252,10 @@
 
                   <div class="col-md-4 offset-md-right-2 col-sm-6 mb-5">
                     <br><br>
-                    <h4 class="mb-4" style="color: #C5C6C7;">Send private messages to your friend or make a chat group</h4>
-                    <p style="color: #C5C6C7;">Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet
+                    <h4 class="mb-4" style="color: #C5C6C7;">Send private messages to your friend or make a chat group
+                    </h4>
+                    <p style="color: #C5C6C7;">Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus
+                      varius blandit sit amet
                       non magna. Cras mattis consectetur purus sit amet.</p>
                   </div>
                   <!--/ .col-md-4.col-md-offset-right-2.col-sm-6 -->
@@ -266,8 +272,10 @@
 
                   <div class="col-md-4 offset-md-2 col-sm-6 offset-sm-0">
                     <br><br>
-                    <h4 class="mb-4" style="color: #C5C6C7;">Ready to join our App for your advance social experience?</h4>
-                    <p style="color: #C5C6C7;">Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet
+                    <h4 class="mb-4" style="color: #C5C6C7;">Ready to join our App for your advance social experience?
+                    </h4>
+                    <p style="color: #C5C6C7;">Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus
+                      varius blandit sit amet
                       non magna. Cras mattis consectetur purus sit amet.</p>
                   </div>
                   <!--/ .col-md-4.col-md-offset-2.col-sm-6 -->
@@ -292,19 +300,20 @@
         </div>
       </div>
       <!--/ .container -->
-     <br>
+      <br>
     </section>
   </section>
 
 
-     
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" >
+  <footer id="footer">
     <div class="container">
       <h3 style="color: #000000">Shop Party</h3>
-      <p  style="color: #202020">Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+      <p style="color: #202020">Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime
+        saepe commodi placeat.</p>
 
       <div class="social-links">
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>

@@ -628,3 +628,7 @@ a {
 .signup-error {
   color: white;
 }
+
+.greetings {
+  font-size: 2vmax;
+}

@@ -4,6 +4,7 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+var greetingsTyped;
 (function () {
   "use strict";
 
@@ -151,6 +152,8 @@
     });
   }
 
+
+
   /**
    * Skills animation
    */
@@ -249,18 +252,25 @@
     }
   });
 
+  
   /**
    * Animation on scroll
    */
   window.addEventListener('load', () => {
-    //Vamsi: styling
     if (sessionStorage.getItem("name")) {
-      document.getElementById("greetings").innerHTML = "Hi " + sessionStorage.getItem("name");
+      greetingsTyped = new Typed('.greetings', {
+        strings: ["Hi " + sessionStorage.getItem("name")+"\n\n\n", "Welcome to...\n\n\n"],
+        loop: true,
+        typeSpeed: 50,
+        backSpeed: 50
+      });
       document.getElementById("logout-button").style.display = "block";
       document.getElementById("login-button").style.display = "none";
       document.getElementById("rooms").setAttribute('data-target', "#myModal")
     } else {
-      document.getElementById("greetings").innerHTML = "";
+      if (greetingsTyped) {
+        greetingsTyped.destroy();
+      }
       document.getElementById("logout-button").style.display = "none";
       document.getElementById("login-button").style.display = "block";
       document.getElementById("rooms").setAttribute('data-target', "#exampleModalCenter")
@@ -275,10 +285,9 @@
 
 })()
 
-//Vamsi: styling
 function logout() {
   sessionStorage.clear();
-  document.getElementById("greetings").innerHTML = "";
+  greetingsTyped.destroy();
   document.getElementById("logout-button").style.display = "none";
   document.getElementById("login-button").style.display = "block";
   document.getElementById("rooms").setAttribute('data-target', "#exampleModalCenter")
