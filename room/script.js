@@ -6,7 +6,8 @@ var local_stream;
 var screenStream;
 var peer = null;
 var currentPeer = null
-var screenSharing = false
+var screenSharing = false;
+var message = document.getElementById("chat-content");
 
 window.onload = function() {
     if(sessionStorage.getItem("action") === "create") {
@@ -19,6 +20,10 @@ window.onload = function() {
 
 function createRoom() {
     console.log("Creating Room")
+    //var peer = null; // Own peer object
+    var conn = null;
+    var sendMessageBox = document.getElementById("sendMessageBox");
+    var sendButton = document.getElementById("sendButton");
     //let room = document.getElementById("room-input").value;
     let room = sessionStorage.getItem("roomId");
     if (room == " " || room == "") {
@@ -37,14 +42,71 @@ function createRoom() {
             console.log(err)
         })
         notify("Waiting for peer to join.")
-    })
+    });
     peer.on('call', (call) => {
         call.answer(local_stream);
         call.on('stream', (stream) => {
             setRemoteStream(stream)
         })
         currentPeer = call;
-    })
+    });
+    peer.on('connection', function (c) {
+        // Allow only a single connection
+        if (conn && conn.open) {
+            c.on('open', function () {
+                c.send("Already connected to another client");
+                setTimeout(function () { c.close(); }, 500);
+            });
+            return;
+        }
+        conn = c;
+        console.log("Connected to: " + conn.peer);
+        conn.on('data', function (data) {
+            console.log("Data recieved");
+            addMessage("<div class=\"media media-chat\"><div class=\"media-body\"><p>" + data + "</p></div></div>");
+        });
+    });
+    // Listen for enter in message box
+    sendMessageBox.addEventListener('keypress', function (e) {
+        var event = e || window.event;
+        var char = event.which || event.keyCode;
+        if (char == '13')
+            sendButton.click();
+    });
+    // Send message
+    sendButton.addEventListener('click', function () {
+        console.log('send event listener')
+        if (conn && conn.open) {
+            var msg = sendMessageBox.value;
+            sendMessageBox.value = "";
+            conn.send(msg);
+            console.log("Sent: " + msg)
+            addMessage("<div class=\"media media-chat media-chat-reverse\"><div class=\"media-body\" style=\"float:right\"><p>" + msg + "</p></div></div><br/>");
+        } else {
+            console.log('Connection is closed');
+        }
+    });
+}
+
+
+function addMessage(msg) {
+    var now = new Date();
+    var h = now.getHours();
+    var m = addZero(now.getMinutes());
+    var s = addZero(now.getSeconds());
+
+    if (h > 12)
+        h -= 12;
+    else if (h === 0)
+        h = 12;
+
+    function addZero(t) {
+        if (t < 10)
+            t = "0" + t;
+        return t;
+    };
+
+    message.innerHTML = message.innerHTML + msg;
 }
 
 function setLocalStream(stream) {
@@ -75,6 +137,11 @@ function notify(msg) {
 }
 
 function joinRoom() {
+
+   // var peer = null; // own peer object
+    var conn = null;
+    var sendMessageBox = document.getElementById("sendMessageBox");
+    var sendButton = document.getElementById("sendButton");
     console.log("Joining Room")
     //let room = document.getElementById("room-input").value;
     let room = sessionStorage.getItem("roomId");
@@ -86,7 +153,7 @@ function joinRoom() {
     //hideModal()
     peer = new Peer()
     peer.on('open', (id) => {
-        console.log("Connected with Id: " + id)
+        console.log("Peer Connected with Id: " + id)
         getUserMedia({ video: true, audio: true }, (stream) => {
             local_stream = stream;
             setLocalStream(local_stream)
@@ -98,9 +165,40 @@ function joinRoom() {
             currentPeer = call;
         }, (err) => {
             console.log(err)
-        })
+        });
+        conn = peer.connect(room_id, {
+            reliable: true
+        });
+        console.log("join conn object: ")
+        console.log(conn)
 
+        conn.on('open', function () {
+            console.log("Connected to: " + conn.peer);
+        });
+        // Handle incoming data (messages only since this is the signal sender)
+        conn.on('data', function (data) {
+            addMessage("<div class=\"media media-chat\"><div class=\"media-body\"><p>" + data + "</p></div></div>");
+        });
     })
+    // Listen for enter in message box
+    sendMessageBox.addEventListener('keypress', function (e) {
+        var event = e || window.event;
+        var char = event.which || event.keyCode;
+        if (char == '13')
+            sendButton.click();
+    });
+    // Send message
+    sendButton.addEventListener('click', function () {
+        if (conn && conn.open) {
+            var msg = sendMessageBox.value;
+            sendMessageBox.value = "";
+            conn.send(msg);
+            console.log("Sent: " + msg);
+            addMessage("<div class=\"media media-chat media-chat-reverse\"><div class=\"media-body\" style=\"float:right\"><p>" + msg + "</p></div></div><br/>");
+        } else {
+            console.log('Connection is closed');
+        }
+    });
 }
 
 function startScreenShare() {

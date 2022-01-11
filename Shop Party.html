@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/logo.png" rel="icon">
+  <link href="assets/img/logo2.png" rel="icon">
 
   <!-- Google Fonts -->
   <link
@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js"></script>
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="styles.css" rel="stylesheet">
@@ -45,12 +46,12 @@
       <ul>
         <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span> Home</span></a></li>
         <li><a href="#clients" class="nav-link scrollto"><i class="bx bx-share"></i> <span>GOTO</span></a></li>
-        <li><a href="#gtco-section-featurettes" class="nav-link scrollto"><i class="bx bx-receipt"></i>
+        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-receipt"></i>
             <span>About</span></a></li>
-        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-        <li><a data-toggle="modal" data-target="#myModal" class="nav-link scrollto"><i
+
+        <li><a data-toggle="modal" data-target="#myModal" class="nav-link scrollto" id="rooms"><i
               class="bx bx-plus"></i><span>Rooms</span></a></li>
-       <!-- <li><a data-toggle="modal" data-target="#myModal" class="nav-link scrollto"><i
+        <!-- <li><a data-toggle="modal" data-target="#myModal" class="nav-link scrollto"><i
               class="bx bx-plus"></i><span>Join</span></a></li> -->
       </ul>
 
@@ -61,36 +62,98 @@
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog1">
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content" style="background-color: #0B0C10;">
         <p id="notification" hidden></p>
         <div class="entry-modal" id="entry-modal">
           <h2 class="modal-header">Create or Join Meeting</h2>
           <input id="room-input" class="room-input" placeholder="Enter Room ID">
-          <br/>
-          <br/>
+          <br />
+          <br />
           <div>
-            <button onclick="room('create')" class="modal-button">Create</button>
-            <button onclick="room('join')" class="modal-button">Join</button>
+            <button onclick="room('create')" class="modal-button" style="color: #0B0C10">Create</button>
+            <button onclick="room('join')" class="modal-button" style="color: #0B0C10">Join</button>
           </div>
-          <br/>
+          <br />
         </div>
       </div>
     </div>
   </div>
- 
+  <!-- <div style="float: right;">
+    <div class="greetings-div">
+      <p id="greetings"></p>
+  </div> -->
+  <button type="button" style="float: right;margin-right: 20px;margin-top: 10px;margin-bottom: 2px;"
+    class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="login-button">
+    LOGIN
+  </button>
+  <button type="button" style="float: right;margin-right: 20px;margin-top: 10px;" class="btn btn-primary"
+    onclick="logout()" id="logout-button">
+    LOGOUT
+  </button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="login-box">
+          <div class="login-snip"> <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1"
+              class="tab">Login</label> <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2"
+              class="tab">Sign Up</label>
+            <div class="login-space">
+              <div class="login">
+                <div class="group"> <label for="user" class="label">Email</label> <input id="emailL" type="text"
+                    class="input" placeholder="Enter your email"> </div>
+                <div class="group"> <label for="passL" class="label">Password</label> <input id="passL" type="password"
+                    class="input" data-type="password" placeholder="Enter your password"> </div>
+                <!-- <div class="group"> <input id="check" type="checkbox" class="check" checked> <label for="check"><span class="icon"></span> Keep me Signed in</label> </div> -->
+                <div class="group"> <button type="submit" onclick="userLogin()" class="button" id="login">Log
+                    In</button>
+                </div>
+                <div class="hr"></div>
+                <div id="login-error" class="login-error"></div>
+                <!-- <div class="foot"> <a href="#">Forgot Password?</a> </div> -->
+              </div>
+              <div class="sign-up-form">
+                <div class="group"> <label for="pass" class="label">Email Address</label> <input id="email" type="text"
+                    class="input" placeholder="Enter your email address">
+                </div>
+                <div class="group"> <label for="user" class="label">Username</label> <input id="user" type="text"
+                    class="input" placeholder="Create your Username">
+                </div>
+                <div class="group"> <label for="pass" class="label">Password</label> <input id="pass" type="password"
+                    class="input" data-type="password" placeholder="Create your password"> </div>
+                <div class="group"> <label for="pass" class="label">Repeat Password</label> <input id="pass"
+                    type="password" class="input" data-type="password" placeholder="Repeat your password"> </div>
+                <div class="group"> <button type="submit" onclick="userSignUp()" class="button" id="signup">Sign
+                    Up</button> </div>
+                <div class="hr"></div>
+                <div id="signup-error" class="signup-error"></div>
+                <div class="foot"> <label for="tab-1">Already Member?</label> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Party Shop</h1>
-      <p><span class="typed" data-typed-items="Experiment,Experience"></span>With Friends</p>
+      <span id="greetings" class="greetings" style="color: #ffffff;"></span>
+      <br />
+      <h1 style="color: #ffffff;">Party Shop</h1>
+      <p style="color: #ffffff;"><span class="typed" data-typed-items="Experiment,Experience"></span>With Friends</p>
       <div class="social-links">
-        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        <a href="#" class="twitter" style="color: #ffffff;"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook" style="color: #ffffff;"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram" style="color: #ffffff;"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus" style="color: #ffffff;"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin" style="color: #ffffff;"><i class="bx bxl-linkedin"></i></a>
       </div>
 
     </div>
@@ -131,14 +194,14 @@
     </div>
   </section>
 
-  <main id="main">
-    <br><br>
-    <div class="section-title">
-      <h2>About</h2>
-    </div>
-    <section id="gtco-section-featurettes" class="featurettes bg-white">
+  <section id="about">
 
-      <div class="container">
+    <section id="main" style="background: #0B0C10;">
+      <div class="section-title">
+        <h2 style="color: #C5C6C7;">About</h2>
+      </div>
+
+      <div class="container" style="background: #0B0C10;">
         <div class="section-content">
           <div class="row">
             <div class="col-md-12 text-center">
@@ -147,7 +210,7 @@
                 <h2 class="section-title">
                   <b>Brand new</b> Shopping Application,<br> different than any other one
                 </h2>
-                <p class="section-sub-title">
+                <p class="section-sub-title" style="color: #C5C6C7;">
                   Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla vitae elit libero, a
                   <br>pharetra augue. Donec id elit non mi porta gravida at eget metus.
                 </p>
@@ -160,8 +223,9 @@
 
                   <div class="col-md-4 offset-md-2 col-sm-6">
                     <br><br>
-                    <h4 class="mb-4">Capture every moments and share it to all your friends</h4>
-                    <p>Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet
+                    <h4 class="mb-4" style="color: #C5C6C7;">Capture every moments and share it to all your friends</h4>
+                    <p style="color: #C5C6C7;">Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus
+                      varius blandit sit amet
                       non magna. Cras mattis consectetur purus sit amet.</p>
                   </div>
                   <!--/ .col-md-4.col-md-offset-2.col-sm-6 -->
@@ -188,8 +252,10 @@
 
                   <div class="col-md-4 offset-md-right-2 col-sm-6 mb-5">
                     <br><br>
-                    <h4 class="mb-4">Send private messages to your friend or make a chat group</h4>
-                    <p>Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet
+                    <h4 class="mb-4" style="color: #C5C6C7;">Send private messages to your friend or make a chat group
+                    </h4>
+                    <p style="color: #C5C6C7;">Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus
+                      varius blandit sit amet
                       non magna. Cras mattis consectetur purus sit amet.</p>
                   </div>
                   <!--/ .col-md-4.col-md-offset-right-2.col-sm-6 -->
@@ -206,8 +272,10 @@
 
                   <div class="col-md-4 offset-md-2 col-sm-6 offset-sm-0">
                     <br><br>
-                    <h4 class="mb-4">Ready to join our App for your advance social experience?</h4>
-                    <p>Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus varius blandit sit amet
+                    <h4 class="mb-4" style="color: #C5C6C7;">Ready to join our App for your advance social experience?
+                    </h4>
+                    <p style="color: #C5C6C7;">Nulla vitae elit libero, a pharetra augue. Maecenas sed diam eget risus
+                      varius blandit sit amet
                       non magna. Cras mattis consectetur purus sit amet.</p>
                   </div>
                   <!--/ .col-md-4.col-md-offset-2.col-sm-6 -->
@@ -232,79 +300,20 @@
         </div>
       </div>
       <!--/ .container -->
-      <!-- ======= Contact Section ======= -->
-      <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
+      <br>
+    </section>
+  </section>
 
-          <div class="section-title">
-            <h2>Contact</h2>
-          </div>
 
-          <div class="row mt-1">
-
-            <div class="col-lg-4">
-              <div class="info">
-                <div class="address">
-                  <i class="bi bi-geo-alt"></i>
-                  <h4>Location:</h4>
-                  <p>A108 Adam Street, New York, NY 535022</p>
-                </div>
-
-                <div class="email">
-                  <i class="bi bi-envelope"></i>
-                  <h4>Email:</h4>
-                  <p>info@example.com</p>
-                </div>
-
-                <div class="phone">
-                  <i class="bi bi-phone"></i>
-                  <h4>Call:</h4>
-                  <p>+1 5589 55488 55s</p>
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="col-lg-8 mt-5 mt-lg-0">
-
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                <div class="row">
-                  <div class="col-md-6 form-group">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                  </div>
-                  <div class="col-md-6 form-group mt-3 mt-md-0">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                  </div>
-                </div>
-                <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group mt-3">
-                  <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                </div>
-                <div class="my-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
-                <div class="text-center"><button type="submit">Send Message</button></div>
-              </form>
-
-            </div>
-
-          </div>
-
-        </div>
-      </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="container">
-      <h3>Shop Party</h3>
-      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+      <h3 style="color: #000000">Shop Party</h3>
+      <p style="color: #202020">Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime
+        saepe commodi placeat.</p>
 
       <div class="social-links">
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -333,6 +342,44 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script type="text/javascript">
+    const userLogin = async () => {
+      var myBody = { "email": document.getElementById("emailL").value, "password": document.getElementById("passL").value }
+      const response = await fetch('http://localhost:4000/api/users/login', {
+        method: 'POST',
+        body: JSON.stringify(myBody),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const myJson = await response.json(); //extract JSON from the http response
+      if (myJson.message) {
+        document.getElementById("login-error").innerHTML = myJson.message;
+        document.getElementById("greetings").innerHTML = "";
+      } else {
+        sessionStorage.setItem("name", myJson.name);
+        document.getElementById("login-error").innerHTML = "";
+        location.reload();
+      }
+    }
+
+    const userSignUp = async () => {
+      var myBody = { "email": document.getElementById("email").value, "password": document.getElementById("pass").value, "name": document.getElementById("user").value }
+      const response = await fetch('http://localhost:4000/api/users/signup', {
+        method: 'POST',
+        body: JSON.stringify(myBody),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const myJson = await response.json();
+      if (myJson.message) {
+        document.getElementById("signup-error").innerHTML = "<p>" + myJson.message + "</p>";
+      } else {
+        document.getElementById("signup-error").innerHTML = "Signup Successful. Login to continue";
+      }
+    }
+  </script>
 </body>
 
 </html>
